@@ -1,3 +1,4 @@
+using EComerce.Repositorio.Contexto;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -5,6 +6,9 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using EComerce.Dominios.Contratos;
+using EComerce.Repositorio.Repositorio;
 
 namespace EComerce.Web
 {
@@ -12,7 +16,9 @@ namespace EComerce.Web
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder();
+            builder.AddJsonFile("config.json",optional:false,reloadOnChange:true);
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -20,7 +26,10 @@ namespace EComerce.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Configuration.GetConnectionString("EcommerceSql");
+            services.AddDbContext<EcommerceContexto>(options => options.UseLazyLoadingProxies().UseSqlServer(connectionString, m=> m.MigrationsAssembly("EComerce.Repositorio")));
             services.AddControllersWithViews();
+            services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -68,7 +77,8 @@ namespace EComerce.Web
                 if (env.IsDevelopment())
                 {
                     //spa.UseAngularCliServer(npmScript: "start");
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:" +
+                        "4200/");
                 }
             });
         }

@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "EcommerceSql": "Server=DESKTOP-T8GC0HM\\SQLEXPRESS;Database=EcommerceSql;Trusted_Connection=True;MultipleActiveResultSets=true;"
+  }
+}

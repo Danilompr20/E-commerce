@@ -1,11 +1,12 @@
-﻿using EComerce.Dominios.Entidades.Enum;
+﻿
+using EComerce.Dominios.Entidades.Enum;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace EComerce.Dominios.Entidades.ObejtoDeValor
 {
-    public class FormaPagamento
+    public class FormaPagamento 
     {
         public int FormaPagamentoId { get; set; }
         public string Nome { get; set; }
