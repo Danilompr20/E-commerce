@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UsuarioServico } from '../servicos/usuario/usuario.servico';
 
 @Component({
   selector: 'app-nav-menu',
@@ -7,12 +9,26 @@ import { Component } from '@angular/core';
 })
 export class NavMenuComponent {
   isExpanded = false;
-
+  constructor(private router: Router, private usuarioServico: UsuarioServico) {
+  }
   collapse() {
     this.isExpanded = false;
   }
 
   toggle() {
     this.isExpanded = !this.isExpanded;
+  }
+
+  ///Funçaõ que recupera se o usuario está logado  usada no template do nav-menu
+  public usuarioLogado(): boolean {
+
+    // retorna um metodo acessado do usuarioServico
+    return this.usuarioServico.usuario_autenticado(); 
+  }
+
+  // função para deslogar usada no template do nav-menu
+  public sair(): void {
+    this.usuarioServico.limparSessao();
+    this.router.navigate(['/']);
   }
 }

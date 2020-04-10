@@ -30,6 +30,8 @@ namespace EComerce.Web
             services.AddDbContext<EcommerceContexto>(options => options.UseLazyLoadingProxies().UseSqlServer(connectionString, m=> m.MigrationsAssembly("EComerce.Repositorio")));
             services.AddControllersWithViews();
             services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
