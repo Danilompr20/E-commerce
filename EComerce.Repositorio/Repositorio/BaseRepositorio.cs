@@ -11,11 +11,14 @@ namespace EComerce.Repositorio.Repositorio
     public class BaseRepositorio<TEntity> : IBaseRepositorio<TEntity> where TEntity : class
 
     {
+
+        //metodos padrões  como inserir , deletar são feitos no baseRepositoios, metodo especificos são feito dentro propria classe
         protected readonly EcommerceContexto EcommerceContexto;
         protected DbSet<TEntity> DbSet;
        
         public BaseRepositorio(EcommerceContexto ecommerceContexto)
         {
+            //variavel EcommerceContexto recebe oque tem em ecommerceContexto via enjeção de dependencia
             EcommerceContexto = ecommerceContexto;
             DbSet = EcommerceContexto.Set<TEntity>();
 

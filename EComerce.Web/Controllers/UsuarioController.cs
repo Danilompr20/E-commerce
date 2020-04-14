@@ -34,12 +34,21 @@ namespace EComerce.Web.Controllers
             }
 
         }
-
+        // recebe os dados do usuario  enviados pelo angular no [FromBody]
         [HttpPost]
-        public IActionResult Post()
+        public IActionResult Post([FromBody] Usuario usuario )
         {
             try
             {
+                //verifica se o email do usuario ao se cadastrar ja esxite na base de dados
+                var  usuarioCadastrado = _usuarioRepositorio.Obter(usuario.Email);
+                if (usuarioCadastrado!=null)
+                {
+                    return BadRequest("E-mail já cadastrado no sistema");
+
+                }
+                // caso não exita o email no banco ele cadastrada o usuario recebido por parametro no [fromBody]
+                _usuarioRepositorio.Adicionar(usuario);
                 return Ok();
 
             }
@@ -56,6 +65,7 @@ namespace EComerce.Web.Controllers
         {
             try
             {
+                // ao logar verifica se o usuario digitado se encontra cadastrado no banco 
                 var usuarioRetorno = _usuarioRepositorio.Obter(usuario.Email, usuario.Senha);
                 if (usuarioRetorno != null)
                 {

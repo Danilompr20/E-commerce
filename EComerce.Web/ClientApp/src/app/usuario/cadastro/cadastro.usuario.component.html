@@ -1,10 +1,113 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
 
-</body>
-</html>
+<meta charset="utf-8" />
+<title></title>
+
+
+<div class="text-center ">
+  <form class="form-signin">
+    <h1 class="h4 mb-2">Criar Conta</h1>
+
+    <label for="inputEmail" class="sr-only">Email</label>
+    <input type="email" id="inputEmail"
+           name="email" placeholder="E-mail"
+           class="form-control mb-2"
+           [ngClass]="{
+             'is-valid':email.valid &&(email.dirty ||email.touched),
+             'is-invalid':email.invalid &&(email.dirty ||email.touched)
+             }"
+           [(ngModel)]="usuario.email"
+           #email="ngModel"
+           email
+           required />
+    <div class="invalid-feedback mb-2" *ngIf="email.invalid &&(email.dirty||email.touched)">
+      <div *ngIf="email.errors.required">
+        E-mail deve ser preenchido
+      </div>
+      <div *ngIf="email.errors.email">
+        E-mail não está no formato correto
+      </div>
+    </div>
+
+    <label for="inputSenha" class="sr-only">Senha</label>
+    <input type="password" id="inputSenha"
+           name="senha" placeholder="Senha"
+           class="form-control mb-2"
+           [ngClass]="{
+             'is-valid':senha.valid &&(senha.dirty ||senha.touched),
+             'is-invalid':senha.invalid &&(senha.dirty ||senha.touched)
+             }"
+           [(ngModel)]="usuario.senha"
+           #senha="ngModel"
+           required />
+    <div class="invalid-feedback mb-2" *ngIf="senha.invalid &&(senha.dirty ||senha.touched)">
+      <div *ngIf="senha.errors.required">
+        Senha deve ser preenchida
+      </div>
+
+    </div>
+
+    <label for="inputNome" class="sr-only">Nome</label>
+    <input type="text" id="inputNome"
+           name="nome" placeholder="Nome"
+           class="form-control mb-2"
+           [ngClass]="{
+             'is-valid':nome.valid &&(nome.dirty ||nome.touched),
+             'is-invalid':nome.invalid &&(nome.dirty ||nome.touched)
+             }"
+           [(ngModel)]="usuario.nome"
+           #nome="ngModel"
+           required />
+    <div class="invalid-feedback mb-2" *ngIf="nome.invalid &&(email.dirty||nome.touched)">
+      <div *ngIf="nome.errors.required">
+        Nome deve ser preenchido
+      </div>
+    </div>
+
+
+
+    <label for="inputSobrenome" class="sr-only">Sobrenome</label>
+    <input type="text" id="inputSobrenome"
+           name="sobrenome" placeholder="Sobrenome"
+           class="form-control mb-2"
+           [ngClass]="{
+             'is-valid':sobrenome.valid &&(sobrenome.dirty ||sobrenome.touched),
+             'is-invalid':sobrenome.invalid &&(sobrenome.dirty ||sobrenome.touched)
+             }"
+           [(ngModel)]="usuario.sobrenome"
+           #sobrenome="ngModel"
+           required />
+    <!--sobrenome com # na fente representa  o campo do tamplete que recebe oque o usuario esta digitando,
+      usado para validar os dados digitados.
+      usuario.sobrenome tem que estar igual na model usuario
+      atraves do bind[ngModel] permite mapear tudo que foi digitado no input-->
+
+    <!--diry verifica se tem algo escrito no campo touched verifica se omouse passou por cima do campo
+      ou seja para que não renderize a msg de erro assim que entrar na tela --> 
+    <div class="invalid-feedback mb-2" *ngIf="nome.invalid &&(email.dirty||nome.touched)">
+      <div *ngIf="sobrenome.errors.required">
+        Sobrenome deve ser preenchido
+      </div>
+    </div>
+
+    <button class=" btn btn-primary btn-block" type="submit" (click)="cadastrar()" [disabled]="ativar_spinner">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativar_spinner">
+
+      </span>
+      Cadastrar
+    </button>
+
+    <div><a [routerLink]="['/entrar']">Voltar</a></div>
+
+    <div class="alert alert-danger mb-2" *ngIf="mensagem">
+      {{mensagem}}
+    </div>
+    <div class="alert alert-success"*ngIf="usuarioCadastrado">
+      Usuario cadastrado com sucesso!<a class="alert-link"[routerLink]="['/entrar']">Clique aqui para entrar</a>
+
+    </div>
+    <img src="data:image/jpeg;base64,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" />
+
+  </form>
+</div>
+
+
