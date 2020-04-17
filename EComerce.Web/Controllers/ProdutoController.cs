@@ -17,8 +17,8 @@ namespace EComerce.Web.Controllers
         private readonly IProdutoRepositorio _produtoRepositorio;
         private IHttpContextAccessor _httpContextAccessor;
         private IHostingEnvironment _hostingEnvironment;
-        
-        public ProdutoController(IProdutoRepositorio produtoRepositorio, 
+
+        public ProdutoController(IProdutoRepositorio produtoRepositorio,
             IHttpContextAccessor httpContextAccessor, IHostingEnvironment hostingEnvironment)
         {
             _produtoRepositorio = produtoRepositorio;
@@ -32,7 +32,7 @@ namespace EComerce.Web.Controllers
             try
             {
                 return Json(_produtoRepositorio.ObterTodos());
-                
+
             }
             catch (Exception ex)
             {
@@ -49,18 +49,39 @@ namespace EComerce.Web.Controllers
                 produto.Validate();
                 if (!produto.EhValido)
                 {
-                    
+
                     return BadRequest(produto.ObterMesnsagensValidacao());
                 }
-                
+
                 _produtoRepositorio.Adicionar(produto);
-                return Created("api/produto",produto);
+                return Created("api/produto", produto);
             }
             catch (Exception ex)
             {
 
                 return BadRequest(ex.ToString());
             }
+
+
+
+        }
+
+        [HttpPost("Deletar")]
+        public IActionResult Deletar([FromBody]Produto produto)
+        {
+            try
+            {
+                //produto recebido pela reuisição deve ter a propriedade id > 0
+                _produtoRepositorio.Remover(produto);
+                return Json(_produtoRepositorio.ObterTodos());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.ToString());
+             
+            }
+            
+
         }
         [HttpPost("EnviarArquivo")]
         public IActionResult EnviarArquivo()
@@ -96,7 +117,7 @@ namespace EComerce.Web.Controllers
                 }
 
                 // retorna  o nome do arquivo para o angular
-                return Json(nomeCompleto);
+                return Json(novoNomeArquivo);
             }
             catch (Exception ex)
             {

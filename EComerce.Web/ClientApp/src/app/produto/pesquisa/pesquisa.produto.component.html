@@ -22,14 +22,14 @@
       <td>{{p.nome}}</td>
       <td>{{p.descricao}}</td>
       <td>R${{p.preco}}</td>
-      <!--<td> <img src="C:\Users\danil\source\repos\EComerce\EComerce.Web\arquivos\{{p.nomeArquivo}}" style="width:70%;height:10%"/></td>-->
+      <td> <img src="C:\Users\danil\source\repos\EComerce\EComerce.Web\wwwroot\arquivos\{{p.nomeArquivo}}" style="width:70%;height:10%"/></td>
 
-     <td><img   src="{{p.nomeArquivo}}" /></td>
+     <!--<td><img   src="{{p.nomeArquivo}}" /></td>-->
 
 
 
-      <td><a href="#">Editar</a></td>
-      <td><a href="#">Deletar</a></td>
+      <td><button class="btn btn-success btn-sm">Editar</button></td>
+      <td><button class="btn btn-danger btn-sm"(click)="deletarProduto(p)">Deletar</button></td>
     </tr>
 
   </tbody>

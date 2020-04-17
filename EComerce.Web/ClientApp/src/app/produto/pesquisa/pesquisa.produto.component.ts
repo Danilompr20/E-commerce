@@ -35,5 +35,24 @@ export class PesquisaProdutoComponent implements OnInit {
   public adicionarProduto() {
     this.router.navigate(['/produto']);
   }
+  // recebe por parametro o produto do template
+  public deletarProduto(produto: Produto) {
+    var retorno = confirm("Deseja realmente deletar o produto selecionado");
+
+    if (retorno == true) {
+      //envia a api o produto recebido do template no metodo deletarProduto()
+      this.produtoServico.deletar(produto).subscribe(
+        produtos => {
+         
+          //atualiza a lista de produtos através do que foi retornado pela api
+          this.produtos = produtos;
+        },
+        e => {
+          console.log(e.errors);
+        }
+      );
+
+    }
+  }
 
 }
