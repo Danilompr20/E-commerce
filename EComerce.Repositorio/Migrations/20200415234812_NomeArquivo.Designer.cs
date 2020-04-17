@@ -4,14 +4,16 @@ using EComerce.Repositorio.Contexto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EComerce.Repositorio.Migrations
 {
     [DbContext(typeof(EcommerceContexto))]
-    partial class EcommerceContextoModelSnapshot : ModelSnapshot
+    [Migration("20200415234812_NomeArquivo")]
+    partial class NomeArquivo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,7 +162,7 @@ namespace EComerce.Repositorio.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(19,4)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ProdutoId");
 

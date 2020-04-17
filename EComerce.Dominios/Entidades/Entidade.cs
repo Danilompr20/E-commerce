@@ -24,9 +24,14 @@ namespace EComerce.Dominios.Entidades
 
         }
 
+        public string ObterMesnsagensValidacao()
+        {
+            return string.Join(". ",mensagemValidacao);
+        }
+
         public abstract void Validate();
 
-        protected bool EhValido
+        public bool EhValido
         {
             get { return !mensagemValidacao.Any(); }
         }

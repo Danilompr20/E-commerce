@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using EComerce.Dominios.Contratos;
 using EComerce.Repositorio.Repositorio;
+using Microsoft.AspNetCore.Http;
 
 namespace EComerce.Web
 {
@@ -31,6 +32,7 @@ namespace EComerce.Web
             services.AddControllersWithViews();
             services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

@@ -23,6 +23,7 @@ namespace EComerce.Repositorio.Config
                    .HasMaxLength(50);
 
             builder.Property(p => p.Preco)
+                  .HasColumnType("decimal(19,4)")
                    .IsRequired();
 
           //  builder.HasMany(p=> p.i)

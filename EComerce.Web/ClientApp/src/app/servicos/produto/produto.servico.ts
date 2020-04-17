@@ -9,8 +9,8 @@ import { Produto } from "../../model/Produto";
 })
 
 export class ProdutoServico  implements OnInit{
-   
-
+  
+ 
   private baseUrl: string;
   public produto: Produto[];
 
@@ -32,7 +32,7 @@ export class ProdutoServico  implements OnInit{
     //propriedade headers
     //const headers = new HttpHeaders().set('content-type', 'application/json');
     
-    return this.http.post<Produto>(this.baseUrl + "", JSON.stringify(produto), { headers:this.headers });
+    return this.http.post<Produto>(this.baseUrl + "api/produto", JSON.stringify(produto), { headers:this.headers });
 
   }
 
@@ -55,12 +55,20 @@ export class ProdutoServico  implements OnInit{
   }
 
   public obterTodosProdutos(): Observable<Produto[]> {
-    return this.http.get<Produto[]>(this.baseUrl + "");
+    return this.http.get<Produto[]>(this.baseUrl + "api/produto");
 
   }
   public obterProduto(produtoId:number): Observable<Produto[]> {
     return this.http.get<Produto[]>(this.baseUrl + "");
 
+  }
+
+  public enviarArquivo(arquivoSelecionado: File): Observable<string> {
+    //metodo para passar para a api do asp net a imagem selecionada
+    const formData: FormData = new FormData();
+    
+    formData.append("arquivoEnviado", arquivoSelecionado, arquivoSelecionado.name);
+    return this.http.post<string>(this.baseUrl + "api/produto/enviarArquivo", formData);
   }
 
 }

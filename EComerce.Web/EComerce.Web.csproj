@@ -31,6 +31,7 @@
     <None Remove="ClientApp\src\app\Autorizacao\guarda.rotas.ts" />
     <None Remove="ClientApp\src\app\model\Produto.ts" />
     <None Remove="ClientApp\src\app\model\Usuario.ts" />
+    <None Remove="ClientApp\src\app\produto\pesquisa\pesquisa.produto.component.ts" />
     <None Remove="ClientApp\src\app\produto\produto.component.ts" />
     <None Remove="ClientApp\src\app\servicos\produto\produto.servico.ts" />
     <None Remove="ClientApp\src\app\servicos\usuario\usuario.servico.ts" />
@@ -46,6 +47,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\Autorizacao\guarda.rotas.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\model\Produto.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\model\Usuario.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\produto\pesquisa\pesquisa.produto.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\produto\produto.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\servicos\produto\produto.servico.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\servicos\usuario\usuario.servico.ts" />
@@ -57,6 +59,10 @@
     <Content Update="config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\arquivos\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
