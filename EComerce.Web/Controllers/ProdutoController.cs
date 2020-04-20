@@ -53,7 +53,17 @@ namespace EComerce.Web.Controllers
                     return BadRequest(produto.ObterMesnsagensValidacao());
                 }
 
-                _produtoRepositorio.Adicionar(produto);
+                if (produto.ProdutoId > 0)
+                {
+                    _produtoRepositorio.Atualizar(produto);
+                }
+                else
+                {
+                    _produtoRepositorio.Adicionar(produto);
+
+                }
+
+                
                 return Created("api/produto", produto);
             }
             catch (Exception ex)

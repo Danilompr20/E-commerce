@@ -24,6 +24,15 @@ export class ProdutoComponent implements OnInit
 
   ngOnInit(): void {
     this.produto = new Produto();
+    var produtoSessao = sessionStorage.getItem("produtoSessao");
+
+    if (produtoSessao) {
+      this.produto = JSON.parse(produtoSessao);
+
+    }
+    else {
+      this.produto = new Produto();
+    }
   }
 
   //metodo chamado no evento change do tamplate para capturar a imagem inserida
