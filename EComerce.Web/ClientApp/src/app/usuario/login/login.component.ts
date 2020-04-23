@@ -39,9 +39,8 @@ export class LoginComponent implements OnInit {
         //será executada em caso de retorno sem erro
         //data é o json devolvido pelo controller do usuario
         usuario_json => {
-          //console.log(usuario_json);
-          //sessionStorage.setItem("usuario-autenticado", "1");
-          this.usuarioservico.usuario = this.usuario;
+          console.log(usuario_json);
+          this.usuarioservico.usuario = usuario_json;
           
           if (this.returnUrl == null) {
             this.router.navigate(['/']);

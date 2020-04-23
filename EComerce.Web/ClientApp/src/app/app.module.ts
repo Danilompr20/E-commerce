@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { TruncateModule } from 'ng2-truncate';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -15,6 +16,9 @@ import { CadastroUsuarioComponent } from './usuario/cadastro/cadastro.usuario.co
 import { ProdutoServico } from './servicos/produto/produto.servico';
 import { PesquisaProdutoComponent } from './produto/pesquisa/pesquisa.produto.component';
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
+import { LojaPesquisaComponent } from './loja/pesquisa/loja.pesquisa.component';
+import { LojaProdutoComponent } from './loja/produto/loja.produto.component';
+import { LojaEfetivarComponent } from './loja/efetivar/loja.efetivar.component';
 
   
 
@@ -26,7 +30,10 @@ import { AlifeFileToBase64Module } from 'alife-file-to-base64';
     ProdutoComponent,
     LoginComponent,
     CadastroUsuarioComponent,
-    PesquisaProdutoComponent
+    PesquisaProdutoComponent,
+    LojaPesquisaComponent,
+    LojaProdutoComponent,
+    LojaEfetivarComponent
    
   ],
   imports: [
@@ -34,13 +41,16 @@ import { AlifeFileToBase64Module } from 'alife-file-to-base64';
     HttpClientModule,
     FormsModule, 
     AlifeFileToBase64Module,
+    TruncateModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
      
-      { path: 'produto', component: ProdutoComponent},
+      { path: 'produto', component: ProdutoComponent, canActivate: [GuardaRotas] },
       { path: 'entrar', component: LoginComponent },
       { path: 'novo-usuario', component: CadastroUsuarioComponent },
-      { path: 'pesquisar-produto', component: PesquisaProdutoComponent }
+      { path: 'pesquisar-produto', component: PesquisaProdutoComponent, canActivate: [GuardaRotas] },
+      { path: 'loja-produto', component: LojaProdutoComponent },
+      { path: 'loja-efetivar', component: LojaEfetivarComponent, canActivate: [GuardaRotas]}
      
         
 
@@ -50,4 +60,4 @@ import { AlifeFileToBase64Module } from 'alife-file-to-base64';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-//{ path: 'produto', component: ProdutoComponent, canActivate: [GuardaRotas] },
+//

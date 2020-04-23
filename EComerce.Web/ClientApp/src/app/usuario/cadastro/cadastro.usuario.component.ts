@@ -29,6 +29,7 @@ export class CadastroUsuarioComponent implements OnInit {
     this.usuarioServico.cadastrarUsuario(this.usuario)
       .subscribe(
         usuarioJSON => {
+          alert(usuarioJSON);
           this.usuarioCadastrado = true;
           this.mensagem = "";
           this.ativar_spinner = false;

@@ -33,6 +33,8 @@ export class PesquisaProdutoComponent implements OnInit {
   }
 
   public adicionarProduto() {
+    //limpa a sessão antes de adicioinar um novo produto
+    sessionStorage.setItem("produtoSessao","");
     this.router.navigate(['/produto']);
   }
   // recebe por parametro o produto do template
@@ -54,7 +56,8 @@ export class PesquisaProdutoComponent implements OnInit {
 
     }
   }
-  public editarProduto(produto:Produto ) {
+  public editarProduto(produto: Produto) {
+    //seta na sessão um produto obtido no template em Json
     sessionStorage.setItem("produtoSessao", JSON.stringify(produto));
     this.router.navigate(['/produto']);
   }

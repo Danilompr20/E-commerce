@@ -26,6 +26,11 @@ export class NavMenuComponent {
     return this.usuarioServico.usuario_autenticado(); 
   }
 
+  //definir se o usuario é adm
+  public usuario_administrador(): boolean {
+    return this.usuarioServico.usuario_administrador();
+  }
+
   // função para deslogar usada no template do nav-menu
   public sair(): void {
     this.usuarioServico.limparSessao();

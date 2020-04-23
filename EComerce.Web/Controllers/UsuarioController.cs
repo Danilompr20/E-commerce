@@ -48,6 +48,8 @@ namespace EComerce.Web.Controllers
 
                 }
                 // caso não exita o email no banco ele cadastrada o usuario recebido por parametro no [fromBody]
+               // usuario.Administrador = true;
+
                 _usuarioRepositorio.Adicionar(usuario);
                 return Ok();
 

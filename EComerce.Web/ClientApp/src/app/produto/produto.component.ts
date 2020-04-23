@@ -24,8 +24,10 @@ export class ProdutoComponent implements OnInit
 
   ngOnInit(): void {
     this.produto = new Produto();
-    var produtoSessao = sessionStorage.getItem("produtoSessao");
 
+    //recebe o produto que está na sessao enviado pelo template de edição
+    var produtoSessao = sessionStorage.getItem("produtoSessao");
+    // verifica se tem produto na sessão carrega ele 
     if (produtoSessao) {
       this.produto = JSON.parse(produtoSessao);
 
