@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using EComerce.Dominios.Contratos;
 using EComerce.Repositorio.Repositorio;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace EComerce.Web
 {
@@ -27,6 +28,11 @@ namespace EComerce.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+
+
+
+
             var connectionString = Configuration.GetConnectionString("EcommerceSql");
             services.AddDbContext<EcommerceContexto>(options => options.UseLazyLoadingProxies().UseSqlServer(connectionString, m=> m.MigrationsAssembly("EComerce.Repositorio")));
             services.AddControllersWithViews();
