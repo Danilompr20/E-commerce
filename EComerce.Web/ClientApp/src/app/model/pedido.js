@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Pedido = /** @class */ (function () {
     function Pedido() {
+        //inicia uma lista vazia
+        this.itensPedidos = [];
     }
     return Pedido;
 }());
